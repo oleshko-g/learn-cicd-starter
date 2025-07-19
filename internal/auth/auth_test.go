@@ -18,6 +18,12 @@ func TestGetAPIKey(t *testing.T) {
 	be.Err(t, err, ErrNoAuthHeaderIncluded)
 
 	// Empty Authorization header
+	headers.Set("Authorization", "")
+	authToken, err = GetAPIKey(headers)
+	be.Equal(t, authToken, "")
+	be.Err(t, err, ErrMalformedAuthHeader)
+
+	// Empty Auth token
 	headers.Set("Authorization", "ApiKey ")
 	authToken, err = GetAPIKey(headers)
 	be.Equal(t, authToken, "")
