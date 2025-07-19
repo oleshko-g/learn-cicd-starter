@@ -19,10 +19,9 @@ func GetAPIKey(headers http.Header) (string, error) {
 	if authHeader == "" {
 		return "", ErrNoAuthHeaderIncluded
 	}
-	splitAuth := strings.Split(authHeader, " ")
-	if len(splitAuth) == 2 &&
-		splitAuth[0] == "ApiKey" &&
-		splitAuth[1] != "" {
+
+	if splitAuth := strings.Split(authHeader, " "); len(splitAuth) == 2 &&
+		splitAuth[0] == "ApiKey" && splitAuth[1] != "" {
 		return splitAuth[1], nil
 	}
 
