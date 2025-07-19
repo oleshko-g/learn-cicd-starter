@@ -27,3 +27,6 @@ jobs:
           go-version: "1.23.0"
       - name: Formatting
         run: test -z $(go fmt ./...)
+      - uses: dominikh/staticcheck-action@v1
+        with:
+          version: "latest"
