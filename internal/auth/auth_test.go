@@ -1,9 +1,7 @@
 package auth
 
 import (
-	"fmt"
 	"net/http"
-	"os"
 	"testing"
 
 	"github.com/nalgeon/be"
@@ -31,8 +29,7 @@ func TestGetAPIKey(t *testing.T) {
 
 	randomTokenString, err := Make256BitsToken()
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		t.FailNow()
+		t.Fatal(err)
 	}
 
 	// No Error
