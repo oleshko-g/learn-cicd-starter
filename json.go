@@ -2,8 +2,10 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 func respondWithError(w http.ResponseWriter, code int, msg string, logErr error) {
@@ -30,5 +32,9 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 		return
 	}
 	w.WriteHeader(code)
-	w.Write(dat)
+	_, err = w.Write(dat)
+	if err != nil {
+		fmt.Fprint(os.Stderr, err)
+	}
+
 }
