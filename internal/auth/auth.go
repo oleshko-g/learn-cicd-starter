@@ -31,6 +31,6 @@ func GetAPIKey(headers http.Header) (string, error) {
 
 func Make256BitsToken() (string, error) {
 	randomData := make([]byte, 32)
-	rand.Read(randomData)
+	rand.Read(randomData) // #nosec G104 -- never returns an error
 	return hex.EncodeToString(randomData), nil
 }
